@@ -1,0 +1,44 @@
+{#- Chain-of-Thought Prompt Template -#}
+{#- Step-by-step reasoning for complex tasks -#}
+
+{%- if context %}
+## Context
+{{ context }}
+
+{% endif -%}
+
+## Task
+{{ task }}
+
+## Approach
+Think through this problem step by step:
+
+{%- if steps %}
+{% for step in steps %}
+{{ loop.index }}. {{ step }}
+{% endfor %}
+{%- else %}
+1. First, carefully analyze what is being asked
+2. Identify the key components or sub-problems
+3. Work through each component systematically
+4. Verify your reasoning at each step
+5. Synthesize the final answer
+{%- endif %}
+
+{%- if constraints %}
+
+## Constraints
+{% for constraint in constraints %}
+- {{ constraint }}
+{% endfor %}
+{%- endif %}
+
+{%- if output_format %}
+
+## Output Format
+{{ output_format }}
+{%- else %}
+
+## Output Format
+Show your reasoning process, then provide the final answer clearly marked.
+{%- endif %}

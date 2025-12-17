@@ -1,0 +1,25 @@
+{#- Zero-Shot Prompt Template -#}
+{#- Direct task instruction without examples -#}
+
+{%- if context %}
+## Context
+{{ context }}
+
+{% endif -%}
+
+## Task
+{{ task }}
+
+{%- if constraints %}
+
+## Constraints
+{% for constraint in constraints %}
+- {{ constraint }}
+{% endfor %}
+{%- endif %}
+
+{%- if output_format %}
+
+## Output Format
+{{ output_format }}
+{%- endif %}

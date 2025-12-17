@@ -1,0 +1,37 @@
+{#- Few-Shot Prompt Template -#}
+{#- Task instruction with examples for in-context learning -#}
+
+{%- if context %}
+## Context
+{{ context }}
+
+{% endif -%}
+
+## Task
+{{ task }}
+
+{%- if examples %}
+
+## Examples
+{% for example in examples %}
+### Example {{ loop.index }}
+**Input:** {{ example.input | default(example.question, true) }}
+**Output:** {{ example.output | default(example.answer, true) }}
+{% endfor %}
+{%- endif %}
+
+{%- if constraints %}
+
+## Constraints
+{% for constraint in constraints %}
+- {{ constraint }}
+{% endfor %}
+{%- endif %}
+
+{%- if output_format %}
+
+## Expected Output
+{{ output_format }}
+{%- endif %}
+
+Now, please complete the task following the pattern shown in the examples above.

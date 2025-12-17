@@ -1,0 +1,111 @@
+# Built-in enhancement rules configuration
+# These rules supplement the programmatic rules in rule_engine.py
+
+rules:
+  # Phrase replacements for clarity
+  phrase_improvements:
+    - original: "in order to"
+      replacement: "to"
+    - original: "due to the fact that"
+      replacement: "because"
+    - original: "at this point in time"
+      replacement: "now"
+    - original: "in the event that"
+      replacement: "if"
+    - original: "prior to"
+      replacement: "before"
+    - original: "subsequent to"
+      replacement: "after"
+    - original: "in spite of the fact that"
+      replacement: "although"
+    - original: "with regard to"
+      replacement: "regarding"
+    - original: "in accordance with"
+      replacement: "per"
+    - original: "a large number of"
+      replacement: "many"
+    - original: "a small number of"
+      replacement: "few"
+
+  # Intent-specific templates
+  intent_templates:
+    code_generation:
+      prefix: "Write code to accomplish the following:"
+      sections:
+        - name: "Task"
+          required: true
+        - name: "Requirements"
+          required: false
+        - name: "Expected Output"
+          required: false
+      suffix: "Provide complete, well-documented code."
+
+    question_answering:
+      prefix: "Please answer the following question:"
+      suffix: "Provide a clear, well-organized response."
+
+    summarization:
+      prefix: "Summarize the following content:"
+      suffix: "Keep the summary concise but comprehensive."
+
+    analysis:
+      prefix: "Analyze the following:"
+      sections:
+        - name: "Subject"
+          required: true
+        - name: "Focus Areas"
+          required: false
+      suffix: "Provide a structured analysis."
+
+  # Quality improvement hints by score range
+  quality_hints:
+    low:  # < 0.4
+      - "Add clear action verbs"
+      - "Specify expected output format"
+      - "Break into sections"
+      - "Remove ambiguous references"
+    medium:  # 0.4 - 0.7
+      - "Add more context if needed"
+      - "Specify constraints"
+      - "Consider adding examples"
+    high:  # > 0.7
+      - "Minor polish only"
+      - "Verify specificity"
+
+  # Words/phrases to avoid
+  avoid_list:
+    vague_terms:
+      - "stuff"
+      - "thing"
+      - "things"
+      - "something"
+      - "somehow"
+      - "whatever"
+    filler_words:
+      - "basically"
+      - "essentially"
+      - "actually"
+      - "literally"
+      - "obviously"
+      - "clearly"
+      - "honestly"
+
+  # Best practice reminders by intent
+  best_practices:
+    code_generation:
+      - "Specify programming language"
+      - "Include expected behavior"
+      - "Mention error handling requirements"
+      - "Specify input/output format"
+    question_answering:
+      - "Be specific about what you want to know"
+      - "Provide relevant context"
+      - "Specify depth of answer needed"
+    summarization:
+      - "Specify desired length"
+      - "Mention key points to focus on"
+      - "Indicate target audience"
+    analysis:
+      - "Define scope of analysis"
+      - "Specify evaluation criteria"
+      - "Mention desired format"

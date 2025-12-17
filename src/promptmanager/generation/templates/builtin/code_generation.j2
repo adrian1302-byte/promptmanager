@@ -1,0 +1,67 @@
+{#- Code Generation Prompt Template -#}
+{#- Structured prompt for code generation tasks -#}
+
+## Task
+{{ task }}
+
+{%- if language %}
+
+## Programming Language
+{{ language }}
+{%- endif %}
+
+{%- if context %}
+
+## Context
+{{ context }}
+{%- endif %}
+
+{%- if requirements %}
+
+## Requirements
+{% for req in requirements %}
+- {{ req }}
+{% endfor %}
+{%- else %}
+
+## Requirements
+- Write clean, readable code
+- Follow best practices and conventions
+- Include appropriate error handling
+- Add comments for complex logic
+{%- endif %}
+
+{%- if examples %}
+
+## Examples
+{% for example in examples %}
+### Example {{ loop.index }}
+**Input:**
+```
+{{ example.input }}
+```
+**Expected Output:**
+```
+{{ example.output }}
+```
+{% endfor %}
+{%- endif %}
+
+{%- if constraints %}
+
+## Constraints
+{% for constraint in constraints %}
+- {{ constraint }}
+{% endfor %}
+{%- endif %}
+
+## Expected Output
+Provide the complete implementation with:
+1. The main code solution
+2. Brief comments explaining key parts
+{%- if language and language.lower() == 'python' %}
+3. Type hints where appropriate
+{%- endif %}
+{%- if tests %}
+4. Unit tests for the implementation
+{%- endif %}
